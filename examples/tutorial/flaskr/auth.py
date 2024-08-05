@@ -57,9 +57,9 @@ def register():
         error = None
 
         if not username:
-            error = "Username is required."
+            error = "Nombre de usuario requerido."
         elif not password:
-            error = "Password is required."
+            error = "Contraseña requerida."
 
         if error is None:
             try:
@@ -71,7 +71,7 @@ def register():
             except db.IntegrityError:
                 # The username was already taken, which caused the
                 # commit to fail. Show a validation error.
-                error = f"User {username} is already registered."
+                error = f"El Usuario {username} ya esta registrado."
             else:
                 # Success, go to the login page.
                 return redirect(url_for("auth.login"))
@@ -93,10 +93,8 @@ def login():
             "SELECT * FROM user WHERE username = ?", (username,)
         ).fetchone()
 
-        if user is None:
-            error = "Incorrect username."
-        elif not check_password_hash(user["password"], password):
-            error = "Incorrect password."
+        if user is None or not check_password_hash(user["password"], password):
+            error = "Nombre de usuario o contraseña incorrectos"
 
         if error is None:
             # store the user id in a new session and return to the index

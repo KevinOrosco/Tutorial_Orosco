@@ -25,9 +25,9 @@ def test_register(client, app):
 @pytest.mark.parametrize(
     ("username", "password", "message"),
     (
-        ("", "", "Username is required."),
-        ("a", "", "Password is required."),
-        ("test", "test", "already registered"),
+        ("", "", "Nombre de usuario requerido."),
+        ("a", "", "Contraseña requerida"),
+        ("test", "test", "Ya esta registrado"),
     ),
 )
 def test_register_validate_input(client, username, password, message):
