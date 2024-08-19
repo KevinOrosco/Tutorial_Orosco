@@ -8,6 +8,7 @@ CREATE TABLE user (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT UNIQUE NOT NULL,
   password TEXT NOT NULL,
+  email TEXT NOT NULL,
   repassword TEXT NOT NULL
 );
 
